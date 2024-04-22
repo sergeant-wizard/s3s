@@ -11,6 +11,8 @@ import requests, msgpack
 from packaging import version
 import iksm, utils
 
+from extensions import load_existing_job_ids
+
 A_VERSION = "0.6.5"
 
 DEBUG = False
@@ -299,9 +301,11 @@ def fetch_json(which, separate=False, exportall=False, specific=False, numbers_o
 
 			# salmon run jobs - latest 50
 			elif "coopResult" in query1_resp["data"]:
+				existing_job_ids = list(load_existing_job_ids())
 				for shift in query1_resp["data"]["coopResult"]["historyGroups"]["nodes"]:
 					for job in shift["historyDetails"]["nodes"]:
-						job_ids.append(job["id"])
+						if job["id"] not in existing_job_ids:
+							job_ids.append(job["id"])
 
 			if numbers_only:
 				ink_list.extend(battle_ids)
@@ -1859,7 +1863,7 @@ def main():
 			prefetch_checks(printout=True)
 		print("Fetching your JSON files to export locally. This might take a while...")
 		# ! fetch from online - fetch_json() calls prefetch_checks() to gen or check tokens
-		parents, results, coop_results = fetch_json("both", separate=True, exportall=True, specific=True, skipprefetch=True)
+		parents, results, coop_results = fetch_json("salmon", separate=True, exportall=True, specific=True, skipprefetch=True)
 
 		cwd = os.getcwd()
 		if utils.custom_key_exists("old_export_format", CONFIG_DATA):
