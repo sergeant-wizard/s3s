@@ -1,2 +1,6 @@
 config.txt
 *.pyc
+.venv
+exports
+notebooks/**/*.json
+.vscode
