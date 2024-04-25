@@ -36,4 +36,3 @@ def find_shift(stage: Stage, timestamp: datetime.datetime, shifts: list[Shift]) 
     return next(filter(lambda shift: shift.is_in(stage, timestamp), shifts))
   except StopIteration:
     return None
-
