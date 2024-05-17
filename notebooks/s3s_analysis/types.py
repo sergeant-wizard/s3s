@@ -151,7 +151,7 @@ class HistoryDetail(BaseModel):
 class CoopHistoryDetail(BaseModel):
   __typename: str
   id: str
-  afterGrade: AfterGrade
+  afterGrade: Optional[AfterGrade]
   myResult: MyResult
   memberResults: list[MemberResult]
   bossResult: Optional[BossResult]
@@ -163,9 +163,9 @@ class CoopHistoryDetail(BaseModel):
   coopStage: CoopStage
   dangerRate: float
   scenarioCode: Optional[str]
-  smellMeter: int
+  smellMeter: Optional[int]
   weapons: list[Weapon]
-  afterGradePoint: int
+  afterGradePoint: Optional[int]
   scale: Optional[Scale]
   jobPoint: int
   jobScore: int

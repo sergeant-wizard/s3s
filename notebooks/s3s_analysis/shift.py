@@ -28,7 +28,6 @@ class Shift:
       )
     else:
       return False
-    
 
 
 def find_shift(stage: Stage, timestamp: datetime.datetime, shifts: list[Shift]) -> Optional[Shift]:

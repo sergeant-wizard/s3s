@@ -15,7 +15,7 @@ def test_load_jobs() -> None:
 
 
 def test_load_as_df() -> None:
-  df = load_as_df(export_dir)
+  df = load_as_df(export_dir, [])
   assert isinstance(df, pandas.DataFrame)
   assert "playedTime" in df.columns
   
