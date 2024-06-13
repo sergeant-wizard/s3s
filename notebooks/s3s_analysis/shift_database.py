@@ -21,6 +21,7 @@ def dict_to_shift(adict: dict) -> Shift:
     "トキシラズいぶし工房": Stage.tokishirazu,
     "どんぴこ闘技場": Stage.donpiko,
     "ムニ・エール海洋発電所": Stage.meuniere,
+    "各地で同時発生": None,
   }
   return Shift(
     stage=stage_map[adict["stage"]["name"]],

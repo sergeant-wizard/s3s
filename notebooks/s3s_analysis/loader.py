@@ -22,7 +22,11 @@ def load_as_df(path: pathlib.Path, shifts: list[Shift]) -> pandas.DataFrame:
     except IndexError:
       first_wave_deliver_norm = None
     
-    shift = find_shift(Stage(job.coopStage.id), job.playedTime, shifts)
+    try:
+      stage = Stage(job.coopStage.id)
+    except ValueError:
+      raise ValueError(job.coopStage.name)
+    shift = find_shift(stage, job.playedTime, shifts)
     if shift is None:
       shift_label = ""
     else:
